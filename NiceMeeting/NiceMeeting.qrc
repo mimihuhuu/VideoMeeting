@@ -1,0 +1,25 @@
+<RCC>
+    <qresource prefix="/NiceMeeting">
+        <file>resources/login/close.svg</file>
+        <file>resources/login/close_hover.svg</file>
+        <file>resources/login/login_netstatus.svg</file>
+        <file>resources/login/login_netstatus_hover.svg</file>
+        <file>resources/login/login_set.svg</file>
+        <file>resources/login/login_set_hover.svg</file>
+        <file>resources/login/logo.png</file>
+        <file>resources/login/min.svg</file>
+        <file>resources/login/min_hover.svg</file>
+        <file>resources/login/right_image.png</file>
+    </qresource>
+    <qresource prefix="/titlebar">
+        <file>resources/mainwidget/titlebar/close.svg</file>
+        <file>resources/mainwidget/titlebar/close_hover.svg</file>
+        <file>resources/mainwidget/titlebar/logo.png</file>
+        <file>resources/mainwidget/titlebar/max.svg</file>
+        <file>resources/mainwidget/titlebar/max_hover.svg</file>
+        <file>resources/mainwidget/titlebar/min.svg</file>
+        <file>resources/mainwidget/titlebar/min_hover.svg</file>
+        <file>resources/mainwidget/titlebar/normal.svg</file>
+        <file>resources/mainwidget/titlebar/normal_hover.svg</file>
+    </qresource>
+</RCC>
