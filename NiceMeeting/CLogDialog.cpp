@@ -1,4 +1,6 @@
 #include "CLogDialog.h"
+#include "commons.h"
+#include <QIcon>
 #include <QMouseEvent>
 
 CLogDialog::CLogDialog(QWidget *parent)
@@ -6,41 +8,65 @@ CLogDialog::CLogDialog(QWidget *parent)
 {
     ui.setupUi(this);
 	this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowMinMaxButtonsHint);
+	setFixedSize(LOGIN_DIALOG_WIDTH, LOGIN_DIALOG_HEIGHT);
 
 	ui.horizontalLayout->setContentsMargins(0, 0, 0, 0);
+	ui.BigVideoWidget_Vlayout->setContentsMargins(0, 0, 0, 0);
+	ui.BigVideoWidget_Vlayout->setSpacing(0);
+	ui.BigVideoWidget_Top->setContentsMargins(0, 0, 0, 0);
+	ui.BigVideoWidget_Top->setSpacing(0);
+	ui.BigVideoWidget_Top->setAlignment(Qt::AlignTop);
 
 	ui.lineEdit_roomID->setText("1234");
-	ui.widget_right->setStyleSheet("background-image:url(:/NiceMeeting/resources/login/right_image.png)");
-	ui.widget_right->setFixedSize(540, 840);
+	ui.widget_right->setStyleSheet(
+		"background-image: url(:/NiceMeeting/resources/login/right_image.png);"
+		"background-repeat: no-repeat;"
+		"background-position: center;"
+	);
+	ui.widget_right->resize(LOGIN_DIALOG_RIGHT_WIDTH, LOGIN_DIALOG_RIGHT_HEIGHT);
 
+	ui.btnMin->setFlat(true);
 	ui.btnMin->setText("");
-	ui.btnMin->setFixedSize(32, 32);
+	ui.btnMin->setIcon(QIcon());
+	ui.btnMin->setFixedSize(46, 46);
 	ui.btnMin->setStyleSheet(
 		"QPushButton {"
-		"	 background-image:url(:/NiceMeeting/resources/login/min.svg);"
 		"    border: none;"
+		"    background: transparent;"
+		"    background-image: url(:/NiceMeeting/resources/login/min.svg);"
+		"    background-repeat: no-repeat;"
+		"    background-position: center;"
 		"}"
 		"QPushButton:hover {"
 		"    background-image: url(:/NiceMeeting/resources/login/min_hover.svg);"
+		"    background-repeat: no-repeat;"
+		"    background-position: center;"
 		"    background-color: rgba(99, 99, 99, 100);"
 		"}"
 	);
-		
+
+	ui.btnClose->setFlat(true);
 	ui.btnClose->setText("");
-	ui.btnClose->setFixedSize(32, 32);
+	ui.btnClose->setIcon(QIcon());
+	ui.btnClose->setFixedSize(46, 46);
 	ui.btnClose->setStyleSheet(
 		"QPushButton {"
-		"	 background-image:url(:/NiceMeeting/resources/login/close.svg);"
 		"    border: none;"
+		"    background: transparent;"
+		"    background-image: url(:/NiceMeeting/resources/login/close.svg);"
+		"    background-repeat: no-repeat;"
+		"    background-position: center;"
 		"}"
 		"QPushButton:hover {"
 		"    background-image: url(:/NiceMeeting/resources/login/close_hover.svg);"
+		"    background-repeat: no-repeat;"
+		"    background-position: center;"
 		"    background-color: rgba(99, 99, 99, 100);"
 		"}"
 	);
 
 	ui.BtnNetStatus->setText("");
-	ui.BtnNetStatus->setFixedSize(32, 32);
+	ui.BtnNetStatus->resize(32, 32);
 	ui.BtnNetStatus->setFlat(true);
 	ui.BtnNetStatus->setStyleSheet(
 		"QPushButton {"
@@ -52,13 +78,13 @@ CLogDialog::CLogDialog(QWidget *parent)
 		"}"
 	);
 
-	ui.lineEdit_roomID->setFixedHeight(50);
-	ui.lineEdit_pwd->setFixedHeight(50);
-	ui.lineEdit_username->setFixedHeight(50);
-	ui.btnJion->setFixedHeight(50);
+	ui.lineEdit_roomID->resize(ui.lineEdit_roomID->width(), 50);
+	ui.lineEdit_pwd->resize(ui.lineEdit_pwd->width(), 50);
+	ui.lineEdit_username->resize(ui.lineEdit_username->width(), 50);
+	ui.btnJion->resize(ui.btnJion->width(), 50);
 
 	ui.BtnSetting->setText("");
-	ui.BtnSetting->setFixedSize(32, 32);
+	ui.BtnSetting->resize(32, 32);
 	ui.BtnSetting->setStyleSheet(
 		"QPushButton {"
 		"    border: none;"
@@ -74,7 +100,7 @@ CLogDialog::CLogDialog(QWidget *parent)
 	);
 
 	ui.label_logo->setText("");
-	ui.label_logo->setFixedSize(40, 40);
+	ui.label_logo->resize(40, 40);
 	ui.label_logo->setStyleSheet(
 		"QLabel {"
 		"    border: none;"

@@ -1,11 +1,14 @@
 #include "CAgoraObject.h"
 #include "agoraconfig.h"
-#include <QMessageBox> 
+#include "commons.h"
+#include <QMessageBox>
+#include <QImage>
 #include <QProcess>
+#include <windows.h>
     
 //Specify your APP ID here
 #define APPID   "5c3ae3f88921453f8d97f60c955af82f"
-#define APP_TOKEN   "007eJxTYHgtkPLwba/dHacdqWKCohZ/t04QyZB/mXfvzeT4K2wM8msUGEyTjRNTjdMsLCyNDE1MgYwUS/M0M4NkS1PTxDQLozQvaf6shkBGBttOZhZGBggE8VkYDI2MTRgYAP32HEs="
+#define APP_TOKEN   "007eJxTYLjx/3/kRYcw9R9/E98ue6xa8vXX+iVrt22rvnzl9CKxONnlCgymycaJqcZpFhaWRoYmpkBGiqV5mplBsqWpaWKahVEa1w2hrIZARobJffmMjAwQCOKzMBgaGZswMAAAxEcilw=="
     
 CAgoraConfig gAgoraConfig;
 
@@ -83,8 +86,8 @@ int CAgoraObject::init()
 
     m_rtcEngine->enableAudio();
     m_rtcEngine->enableVideo();
+	// Set the channel profile as communication to enable both video and audio call features.
     m_rtcEngine->setChannelProfile(agora::CHANNEL_PROFILE_TYPE::CHANNEL_PROFILE_COMMUNICATION);
-        
 	return 0;
 }
 
@@ -142,3 +145,129 @@ BOOL CAgoraObject::RemoteVideoRender(uid_t uid, HWND hVideoWnd, RENDER_MODE_TYPE
 
     return nRet == 0 ? TRUE : FALSE;
 }
+// Enables the video module.
+int CAgoraObject::enableVideo(bool enabled)
+{
+    if (!m_rtcEngine) {
+        return -1;
+    }
+    return enabled ? m_rtcEngine->enableVideo() : m_rtcEngine->disableVideo();
+}
+
+int CAgoraObject::muteLocalAudio(bool muted)
+{
+    if (!m_rtcEngine) {
+        return -1;
+    }
+    return m_rtcEngine->muteLocalAudioStream(muted);
+}
+
+void CAgoraObject::ShareScreen(VecWindowShareInfo& VecWindowShare)
+{
+	if (!m_rtcEngine) {
+		return;
+	}
+
+	VecWindowShare.clear();
+
+    SIZE size;
+	size.cx = 1280;
+	size.cy = 720;
+
+	IScreenCaptureSourceList* infos = m_rtcEngine->getScreenCaptureSources(size, size, true);
+	if (!infos) {
+		return;
+	}
+
+	const int info_count = infos->getCount();
+	if (info_count <= 0) {
+		infos->release();
+		return;
+	}
+
+    for (int i = 0; i < info_count; ++i)
+    {
+
+		const ScreenCaptureSourceInfo info = infos->getSourceInfo(i);
+
+		window_share_info window;
+		if (info.type == ScreenCaptureSourceType_Screen) {
+			window.windowType = window_share_info::Screen;
+		} else if (info.type == ScreenCaptureSourceType_Window) {
+			window.windowType = window_share_info::Window;
+		} else {
+			continue;
+		}
+
+		window.name = QString::fromUtf8(info.sourceName ? info.sourceName : "");
+		window.sourceId = info.sourceId;
+
+		const ThumbImageBuffer& thumb = info.thumbImage;
+		if (thumb.buffer && thumb.width > 0 && thumb.height > 0 && thumb.length > 0)
+		{
+			const int bytesPerLine = static_cast<int>(thumb.length / thumb.height);
+			if (bytesPerLine >= static_cast<int>(thumb.width * 4))
+			{
+				QImage image(
+					reinterpret_cast<const uchar*>(thumb.buffer),
+					static_cast<int>(thumb.width),
+					static_cast<int>(thumb.height),
+					bytesPerLine,
+					QImage::Format_ARGB32);
+				// 必须深拷贝：infos->release() 后 SDK 缓冲区会失效
+				window.pixmap = QPixmap::fromImage(image.copy());
+			}
+		}
+
+		VecWindowShare.push_back(window);
+    }
+
+	infos->release();
+}
+
+int CAgoraObject::start_share_screen(int type, int64_t sourceId)
+{
+	if (!m_rtcEngine) {
+		return -1;
+	}
+
+    ScreenCaptureParameters captureParam;
+    captureParam.frameRate = 25;
+    captureParam.windowFocus = true;
+    captureParam.captureMouseCursor = true;
+
+    if (type == 0)
+    {
+        agora::rtc::Rectangle region;
+        region.x = 0;
+        region.y = 0;
+        region.width = 0;
+        region.height = 0;
+        captureParam.dimensions.width = 1280;
+        captureParam.dimensions.height = 720;
+        return m_rtcEngine->startScreenCaptureByDisplayId(sourceId, region, captureParam);
+    }
+
+    if (type == 1)
+    {
+        HWND hwnd = reinterpret_cast<HWND>(static_cast<intptr_t>(sourceId));
+        RECT rect = {};
+        WINDOWINFO winfo = {};
+        winfo.cbSize = sizeof(WINDOWINFO);
+        if (!::GetWindowInfo(hwnd, &winfo)) {
+            return -1;
+        }
+        rect = winfo.rcWindow;
+
+        const int win_w = abs(rect.right - rect.left);
+        const int win_h = abs(rect.bottom - rect.top);
+
+        agora::rtc::Rectangle region(0, 0, win_w, win_h);
+        captureParam.dimensions.width = win_w;
+        captureParam.dimensions.height = win_h;
+        return m_rtcEngine->startScreenCaptureByWindowId(sourceId, region, captureParam);
+    }
+
+    return -1;
+}
+

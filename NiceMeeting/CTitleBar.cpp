@@ -1,22 +1,42 @@
 #include "CTitleBar.h"
+#include "commons.h"
 #include <qt_windows.h>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
+#include <QIcon>
+#include <QString>
 
 namespace {
 const char* kTitleBarRes = ":/titlebar/resources/mainwidget/titlebar/";
-const int kTitleIconPx = 20;   // Í¼±êÏÔÊ¾³ß´ç£»°´Å¥ÈÔ 32¡Á32 ·½±ãµã»÷
-const char* kTitleBtnStyle =
-	"QPushButton { border: none; background: transparent; }"
-	"QPushButton:hover { background-color: rgba(99, 99, 99, 100); }";
+const int kTitleIconPx = 20;   // Í¼ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ß´ç£»ï¿½ï¿½Å¥ï¿½ï¿½ 32ï¿½ï¿½32 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+QString titleImageButtonStyle(const char* normalIcon, const char* hoverIcon)
+{
+	return QString(
+		"QPushButton {"
+		"    border: none;"
+		"    background: transparent;"
+		"    background-image: url(%1%2);"
+		"    background-repeat: no-repeat;"
+		"    background-position: center;"
+		"}"
+		"QPushButton:hover {"
+		"    background-color: rgba(99, 99, 99, 100);"
+		"    background-image: url(%1%3);"
+		"    background-repeat: no-repeat;"
+		"    background-position: center;"
+		"}")
+		.arg(kTitleBarRes)
+		.arg(normalIcon)
+		.arg(hoverIcon);
+}
 
-void setupTitleButton(QPushButton* btn, const char* iconFile)
+void setupTitleImageButton(QPushButton* btn, const char* normalIcon, const char* hoverIcon)
 {
 	btn->setFlat(true);
-	btn->setFixedSize(32, 32);
-	btn->setIcon(QIcon(QString(kTitleBarRes) + iconFile));
-	btn->setIconSize(QSize(kTitleIconPx, kTitleIconPx));
-	btn->setStyleSheet(kTitleBtnStyle);
+	btn->setText(QString());
+	btn->setIcon(QIcon());
+	btn->setFixedSize(46, TITLE_BAR_HEIGHT);
+	btn->setStyleSheet(titleImageButtonStyle(normalIcon, hoverIcon));
 }
 } // namespace
 
@@ -32,11 +52,12 @@ CTitleBar::~CTitleBar()
 void CTitleBar::initUI()
 {
 	setAttribute(Qt::WA_StyledBackground);
-	this->setFixedHeight(32 + 15 * 2);
-	this->setStyleSheet("background-color:rgb(54,54,54)");	
+	setFixedHeight(TITLE_BAR_HEIGHT);
+	setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+	setStyleSheet("background-color:rgb(54,54,54)");	
 
 	m_pLogo = new QLabel(this);
-	m_pLogo->setFixedSize(32, 32);
+	m_pLogo->resize(32, 32);
 	QPixmap pixmap(QString(kTitleBarRes) + "logo.png");
 	QPixmap scaled = pixmap.scaled(kTitleIconPx, kTitleIconPx, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 	m_pLogo->setPixmap(scaled);
@@ -44,7 +65,7 @@ void CTitleBar::initUI()
 
 	m_pTitleTextLabel = new QLabel(this);
 	m_pTitleTextLabel->setText(u8"NiceMeeting");
-	m_pTitleTextLabel->setFixedSize(200, 40); 
+	m_pTitleTextLabel->resize(200, 40); 
 	m_pTitleTextLabel->setStyleSheet(
 			"QLabel{font-family:Microsoft YaHei;\
 			font-size:18px;\
@@ -52,60 +73,16 @@ void CTitleBar::initUI()
 			);
 
 	m_pMaxButton = new QPushButton(this);
-	m_pMaxButton->setFixedSize(32, 32);
-	m_pMaxButton->setIconSize(QSize(32, 32));
-	m_pMaxButton->setStyleSheet(
-		"QPushButton {"
-		"	 background-image:url(:/titlebar/resources/mainwidget/titlebar/max.svg);"
-		"    border: none;"
-		"}"
-		"QPushButton:hover {"
-		"    background-image: url(:/titlebar/resources/mainwidget/titlebar/max_hover.svg);"
-		"    background-color: rgba(99, 99, 99, 100);"
-		"}"
-	);
+	setupTitleImageButton(m_pMaxButton, "max.svg", "max_hover.svg");
 
 	m_pSetButton = new QPushButton(this);
-	m_pSetButton->setFixedSize(32, 32);
-	m_pSetButton->setIconSize(QSize(32, 32));
-	m_pSetButton->setStyleSheet(
-		"QPushButton {"
-		"	 background-image:url(:/titlebar/resources/mainwidget/titlebar/normal.svg);"
-		"    border: none;"
-		"}"
-		"QPushButton:hover {"
-		"    background-image: url(:/titlebar/resources/mainwidget/titlebar/normal_hover.svg);"
-		"    background-color: rgba(99, 99, 99, 100);"
-		"}"
-	);
+	setupTitleImageButton(m_pSetButton, "normal.svg", "normal_hover.svg");
 
 	m_pMinButton = new QPushButton(this);
-	m_pMinButton->setFixedSize(32, 32);
-	m_pMinButton->setIconSize(QSize(32, 32));
-	m_pMinButton->setStyleSheet(
-		"QPushButton {"
-		"	 background-image:url(:/titlebar/resources/mainwidget/titlebar/min.svg);"
-		"    border: none;"
-		"}"
-		"QPushButton:hover {"
-		"    background-image: url(:/titlebar/resources/mainwidget/titlebar/min_hover.svg);"
-		"    background-color: rgba(99, 99, 99, 100);"
-		"}"
-	);
+	setupTitleImageButton(m_pMinButton, "min.svg", "min_hover.svg");
 
 	m_pCloseButton = new QPushButton(this);
-	m_pCloseButton->setFixedSize(32, 32);
-	m_pCloseButton->setIconSize(QSize(32, 32));
-	m_pCloseButton->setStyleSheet(
-		"QPushButton {"
-		"	 background-image:url(:/titlebar/resources/mainwidget/titlebar/close.svg);"
-		"    border: none;"
-		"}"
-		"QPushButton:hover {"
-		"    background-image: url(:/titlebar/resources/mainwidget/titlebar/close_hover.svg);"
-		"    background-color: rgba(99, 99, 99, 100);"
-		"}"
-	);
+	setupTitleImageButton(m_pCloseButton, "close.svg", "close_hover.svg");
 
 	QHBoxLayout* pHlay = new QHBoxLayout(this);
 	pHlay->addWidget(m_pLogo);
@@ -116,7 +93,9 @@ void CTitleBar::initUI()
 	pHlay->addWidget(m_pMinButton);
 	pHlay->addWidget(m_pCloseButton);
 
-	pHlay->setContentsMargins(5, 5, 5, 5);
+	pHlay->setContentsMargins(12, 0, 0, 0);
+	pHlay->setSpacing(0);
+	pHlay->setAlignment(Qt::AlignVCenter);
 
 	connect(m_pMinButton, &QPushButton::clicked, this, &CTitleBar::OnClicked);
 	connect(m_pMaxButton, &QPushButton::clicked, this, &CTitleBar::OnClicked);
@@ -152,36 +131,15 @@ void CTitleBar::OnClicked()
 	}
 	else if (pButton == m_pMaxButton)
 	{
-		if (pWindow ->isMaximized())
+		if (pWindow->isMaximized())
 		{
 			pWindow->showNormal();
-			m_pMaxButton->setIcon(QIcon(":/MainWidget/resources/max.svg"));
-			m_pMaxButton->setIconSize(QSize(32, 32));
-			m_pMaxButton->setStyleSheet(
-				"QPushButton {"
-				"    border: none;"
-				"    background: transparent;"
-				"}"
-				"QPushButton:hover {"
-				"    image: url(:/MainWidget/resources/max-hover.svg);"
-				"    background-color: rgba(99, 99, 99, 100);"
-				"}"
-			);
+			m_pMaxButton->setStyleSheet(titleImageButtonStyle("max.svg", "max_hover.svg"));
 		}
-		else {
+		else
+		{
 			pWindow->showMaximized();
-			m_pMaxButton->setIcon(QIcon(":/MainWidget/resources/normal.svg"));
-			m_pMaxButton->setIconSize(QSize(32, 32));
-			m_pMaxButton->setStyleSheet(
-				"QPushButton {"
-				"    border: none;"
-				"    background: transparent;"
-				"}"
-				"QPushButton:hover {"
-				"    image: url(:/MainWidget/resources/normal_hover.svg);"
-				"    background-color: rgba(99, 99, 99, 100);"
-				"}"
-			);
+			m_pMaxButton->setStyleSheet(titleImageButtonStyle("normal.svg", "normal_hover.svg"));
 		}
 	}
 	else if (pButton == m_pCloseButton)

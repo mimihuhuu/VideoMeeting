@@ -1,5 +1,6 @@
 #pragma once
 #include <QObject>
+#include "commons.h"
 #include "IAgoraRtcEngine.h"
 #include "AgoraMediaBase.h"
 using namespace agora::rtc;
@@ -17,6 +18,10 @@ public:
 	int joinChannel(const QString& channel, uint uid);
 	BOOL LocalVideoPreview(HWND hVideoWnd, BOOL bPreviewOn, RENDER_MODE_TYPE renderType = RENDER_MODE_FIT);
 	BOOL RemoteVideoRender(uid_t uid, HWND hVideoWnd, RENDER_MODE_TYPE renderType =RENDER_MODE_HIDDEN);
+	int enableVideo(bool enabled);
+	int muteLocalAudio(bool muted);
+	void ShareScreen(VecWindowShareInfo& VecWindowShare);
+	int start_share_screen(int type, int64_t sourceId);
 
 signals:
 	void sender_joinedChannelSuccess(const QString& qsChannel, unsigned int uid, int elapsed);

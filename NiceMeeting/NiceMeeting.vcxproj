@@ -37,12 +37,12 @@
   </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|Win32'" Label="QtSettings">
     <QtInstall>5.14.2_msvc2017</QtInstall>
-    <QtModules>core;gui;widgets</QtModules>
+    <QtModules>core;gui;widgets;svg</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|Win32'" Label="QtSettings">
     <QtInstall>5.14.2_msvc2017</QtInstall>
-    <QtModules>core;gui;widgets</QtModules>
+    <QtModules>core;gui;widgets;svg</QtModules>
     <QtBuildConfig>release</QtBuildConfig>
   </PropertyGroup>
   <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
@@ -65,10 +65,10 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.\Agora_RTC_SDK\high_level_api\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\sdk\high_level_api\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>.\Agora_RTC_SDK\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>.\sdk;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>agora_rtc_sdk.dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -101,6 +101,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ShareScreenDialog.cpp" />
     <QtRcc Include="NiceMeeting.qrc" />
     <QtUic Include="CLogDialog.ui" />
     <QtMoc Include="CLogDialog.h" />
@@ -108,6 +109,7 @@
     <ClCompile Include="CAgoraObject.cpp" />
     <ClCompile Include="CBigVideoWidget.cpp" />
     <ClCompile Include="CBottonBar.cpp" />
+    <ClCompile Include="CCustomButton.cpp" />
     <ClCompile Include="CFrameLessWidgetBase.cpp" />
     <ClCompile Include="CLeftVideoList.cpp" />
     <ClCompile Include="CLogDialog.cpp" />
@@ -119,6 +121,8 @@
   <ItemGroup>
     <ClInclude Include="agoraconfig.h" />
     <ClInclude Include="commons.h" />
+    <QtMoc Include="ShareScreenDialog.h" />
+    <QtMoc Include="CCustomButton.h" />
     <QtMoc Include="CSmallVideWidget.h" />
     <QtMoc Include="CBigVideoWidget.h" />
     <QtMoc Include="CBottonBar.h" />

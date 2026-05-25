@@ -64,7 +64,13 @@
     <ClCompile Include="CBottonBar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CCustomButton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="CSmallVideWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ShareScreenDialog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -98,7 +104,13 @@
     <QtMoc Include="CBottonBar.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="CCustomButton.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
     <QtMoc Include="CSmallVideWidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="ShareScreenDialog.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

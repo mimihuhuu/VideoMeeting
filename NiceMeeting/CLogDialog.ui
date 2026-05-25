@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>724</width>
-    <height>618</height>
+    <width>1000</width>
+    <height>900</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,12 +16,6 @@
   <layout class="QHBoxLayout" name="horizontalLayout">
    <item>
     <widget class="QWidget" name="widget_left" native="true">
-     <property name="minimumSize">
-      <size>
-       <width>400</width>
-       <height>400</height>
-      </size>
-     </property>
      <layout class="QVBoxLayout" name="LeftList_Vlayout">
       <property name="spacing">
        <number>6</number>
@@ -279,33 +273,21 @@
    </item>
    <item>
     <widget class="QWidget" name="widget_right" native="true">
-     <property name="minimumSize">
-      <size>
-       <width>300</width>
-       <height>600</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>540</width>
-       <height>854</height>
-      </size>
-     </property>
      <layout class="QVBoxLayout" name="BigVideoWidget_Vlayout">
       <property name="spacing">
        <number>6</number>
       </property>
       <property name="leftMargin">
-       <number>9</number>
+       <number>0</number>
       </property>
       <property name="topMargin">
-       <number>9</number>
+       <number>0</number>
       </property>
       <property name="rightMargin">
-       <number>9</number>
+       <number>0</number>
       </property>
       <property name="bottomMargin">
-       <number>9</number>
+       <number>0</number>
       </property>
       <item>
        <layout class="QHBoxLayout" name="BigVideoWidget_Top">

@@ -1,4 +1,50 @@
 #pragma once
-//×ó²àÐ¡ÊÓÆµ´°¿Ú
-#define SMALL_VIDEO_WIDGET_WIDTH 300
-#define SMALL_VIDEO_WIDGET_HEIGHT 225
+
+#include <QPixmap>
+#include <QString>
+#include <cstdint>
+#include <map>
+#include <vector>
+
+#define VIDEO_ASPECT_NUM 16
+#define VIDEO_ASPECT_DEN 9
+
+#define TITLE_BAR_HEIGHT 72
+
+#define LOGIN_DIALOG_WIDTH 1000
+#define LOGIN_DIALOG_HEIGHT 900
+#define LOGIN_DIALOG_RIGHT_WIDTH 520
+#define LOGIN_DIALOG_RIGHT_HEIGHT 900
+
+#define SMALL_VIDEO_WIDGET_WIDTH 420
+#define SMALL_VIDEO_WIDGET_HEIGHT ((SMALL_VIDEO_WIDGET_WIDTH * VIDEO_ASPECT_DEN) / VIDEO_ASPECT_NUM)
+
+#define BIG_VIDEO_DEFAULT_WIDTH 1280
+#define BIG_VIDEO_DEFAULT_HEIGHT ((BIG_VIDEO_DEFAULT_WIDTH * VIDEO_ASPECT_DEN) / VIDEO_ASPECT_NUM)
+
+#define MAIN_WINDOW_DEFAULT_WIDTH (SMALL_VIDEO_WIDGET_WIDTH + BIG_VIDEO_DEFAULT_WIDTH)
+#define MAIN_WINDOW_DEFAULT_HEIGHT (TITLE_BAR_HEIGHT + BIG_VIDEO_DEFAULT_HEIGHT + Bottonbar_HEIGHT)
+
+#define Bottonbar_HEIGHT 96
+#define BOTTONBAR_H_MARGIN 16
+#define BOTTONBAR_ITEM_SPACING 0
+#define BOTTONBAR_TOOL_BTN_WIDTH 84
+#define BOTTONBAR_TOOL_BTN_HEIGHT Bottonbar_HEIGHT
+#define BOTTONBAR_TOOL_ICON_SIZE 32
+#define BOTTONBAR_END_BTN_WIDTH 116
+#define BOTTONBAR_END_BTN_HEIGHT 40
+
+#define SHARE_WINDOW_ITEM_WIDTH 200
+#define SHARE_WINDOW_ITEM_HEIGHT 120
+
+struct window_share_info
+{
+	enum WindowType { Screen, Window };
+
+	int64_t sourceId = 0;
+	QString name;
+	WindowType windowType = Window;
+	QPixmap pixmap;
+};
+
+using VecWindowShareInfo = std::vector<window_share_info>;
