@@ -1,4 +1,3 @@
-//????????��?????
 #pragma once
 #include <QWidget>
 #include <QListWidget>
@@ -12,11 +11,12 @@ public:
 	CLeftVideoList(QWidget* p = nullptr);
 	~CLeftVideoList();
 
-public:
-	void addVideoWidget(CSmallVideWidget* pSmall);
+	void addVideoWidget(unsigned int uid, CSmallVideWidget* pSmall);
+	bool removeVideoWidget(unsigned int uid);
+	bool hasVideoWidget(unsigned int uid) const;
+	CSmallVideWidget* videoWidget(unsigned int uid) const;
+	QList<unsigned int> remoteMemberUids() const;
 
 private:
 	QListWidget* m_pVideoListWidget = nullptr;
-	
 };
-

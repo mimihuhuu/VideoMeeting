@@ -2,11 +2,15 @@
 #include "commons.h"
 #include <QEvent>
 #include <QFont>
+#include <QIcon>
+#include <QLabel>
+#include <QMouseEvent>
 #include <QSizePolicy>
+#include <QVBoxLayout>
 
 CCustomButton::CCustomButton(QString text, QString normalImageUrl, QString normalhoverImageUrl, QString clickedImageUrl,
 		QString clickedImagehoverUrl, bool clicked, QWidget* parent)
-	: QToolButton(parent)
+	: QWidget(parent)
 	, m_text(text)
 	, m_normalImageUrl(normalImageUrl)
 	, m_normalhoverImageUrl(normalhoverImageUrl)
@@ -14,59 +18,89 @@ CCustomButton::CCustomButton(QString text, QString normalImageUrl, QString norma
 	, m_clickedImagehoverUrl(clickedImagehoverUrl)
 	, m_StateOpen(clicked)
 {
-	setAttribute(Qt::WA_StyledBackground, true);
-	setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
-	setIconSize(QSize(BOTTONBAR_TOOL_ICON_SIZE, BOTTONBAR_TOOL_ICON_SIZE));
-	setText(m_text);
-	setCheckable(true);
-	setIcon(QIcon(m_StateOpen ? m_normalImageUrl : m_clickedImageUrl));
+	setAttribute(Qt::WA_Hover, true);
+	setAutoFillBackground(false);
+	setCursor(Qt::PointingHandCursor);
+	setMinimumWidth(BOTTONBAR_TOOL_BTN_MIN_WIDTH);
+	setFixedHeight(BOTTONBAR_TOOL_BTN_HEIGHT);
+	setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 
-	QFont font(QStringLiteral("Microsoft YaHei"), 12);
-	setFont(font);
-	setFixedSize(BOTTONBAR_TOOL_BTN_WIDTH, BOTTONBAR_TOOL_BTN_HEIGHT);
-	setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+	m_pIconLabel = new QLabel(this);
+	m_pIconLabel->setFixedSize(BOTTONBAR_TOOL_ICON_SIZE, BOTTONBAR_TOOL_ICON_SIZE);
+	m_pIconLabel->setAlignment(Qt::AlignCenter);
+	m_pIconLabel->setAttribute(Qt::WA_TransparentForMouseEvents);
+	m_pIconLabel->setAutoFillBackground(false);
 
-	setStyleSheet(
-		"QToolButton {"
-		"    border: none;"
-		"    background-color: transparent;"
-		"    color: #333333;"
-		"    font-family: 'Microsoft YaHei';"
-		"    font-size: 12px;"
-		"    padding: 0px 2px;"
-		"}"
-		"QToolButton:hover {"
-		"    background-color: rgba(0, 0, 0, 0.06);"
-		"}"
-		"QToolButton:pressed {"
-		"    background-color: rgba(0, 0, 0, 0.10);"
-		"}");
+	m_pTextLabel = new QLabel(m_text, this);
+	m_pTextLabel->setAlignment(Qt::AlignCenter);
+	m_pTextLabel->setAttribute(Qt::WA_TransparentForMouseEvents);
+	m_pTextLabel->setAutoFillBackground(false);
+	QFont font(QStringLiteral("Microsoft YaHei"), BOTTONBAR_TOOL_FONT_SIZE);
+	m_pTextLabel->setFont(font);
+	m_pTextLabel->setStyleSheet(QStringLiteral("color: #333333; background: transparent;"));
+
+	auto* layout = new QVBoxLayout(this);
+	layout->setContentsMargins(0, 12, 0, 9);
+	layout->setSpacing(BOTTONBAR_ICON_TEXT_SPACING);
+	layout->addWidget(m_pIconLabel, 0, Qt::AlignHCenter);
+	layout->addWidget(m_pTextLabel, 0, Qt::AlignHCenter);
+
+	updateIcon(false);
 }
 
 CCustomButton::~CCustomButton()
 {
 }
 
-bool CCustomButton::event(QEvent* e)
+void CCustomButton::setText(const QString& text)
 {
-	if (this->isChecked()) {
-		return QWidget::event(e);
+	m_text = text;
+	if (m_pTextLabel) {
+		m_pTextLabel->setText(text);
 	}
-	switch (e->type())
-	{
-	case QEvent::Enter:
-		setIcon(QIcon(m_StateOpen ? m_normalhoverImageUrl : m_clickedImagehoverUrl));
-		return true;
-	case QEvent::MouseButtonPress:
-		setIcon(QIcon(m_StateOpen ? m_normalImageUrl : m_clickedImageUrl));
-		setChecked(true);
+}
+
+void CCustomButton::setOpen(bool open)
+{
+	m_StateOpen = open;
+	updateIcon(underMouse());
+}
+
+void CCustomButton::updateIcon(bool hover)
+{
+	const QString& url = hover
+		? (m_StateOpen ? m_normalhoverImageUrl : m_clickedImagehoverUrl)
+		: (m_StateOpen ? m_normalImageUrl : m_clickedImageUrl);
+	const QPixmap pixmap = QIcon(url).pixmap(BOTTONBAR_TOOL_ICON_SIZE, BOTTONBAR_TOOL_ICON_SIZE);
+	if (m_pIconLabel) {
+		m_pIconLabel->setPixmap(pixmap);
+	}
+}
+
+void CCustomButton::enterEvent(QEvent* event)
+{
+	m_hovered = true;
+	updateIcon(true);
+	QWidget::enterEvent(event);
+}
+
+void CCustomButton::leaveEvent(QEvent* event)
+{
+	m_hovered = false;
+	updateIcon(false);
+	QWidget::leaveEvent(event);
+}
+
+void CCustomButton::mousePressEvent(QMouseEvent* event)
+{
+	if (event->button() == Qt::LeftButton) {
+		updateIcon(false);
 		emit sig_clicked();
-		return true;
-	case QEvent::Leave:
-		setIcon(QIcon(m_StateOpen ? m_normalImageUrl : m_clickedImageUrl));
-		return true;
-	default:
-		break;
+		if (underMouse()) {
+			updateIcon(true);
+		}
+		event->accept();
+		return;
 	}
-	return QWidget::event(e);
+	QWidget::mousePressEvent(event);
 }

@@ -1,0 +1,161 @@
+﻿   Qt/MSBuild: 3.5.0.0
+   Qt: 5.14.2
+  moc CTitleBar.h
+  CTitleBar.cpp
+  CmainWidget.cpp
+  main.cpp
+D:\My_VsQtDemo1\NiceMeeting\main.cpp(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+D:\My_VsQtDemo1\NiceMeeting\sdk\high_level_api\include\IAgoraRtcEngine.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“CmainWidget.cpp”)
+  
+D:\My_VsQtDemo1\NiceMeeting\sdk\high_level_api\include\AgoraMediaBase.h(1069,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“CmainWidget.cpp”)
+  
+D:\My_VsQtDemo1\NiceMeeting\sdk\high_level_api\include\AgoraMediaBase.h(1774,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“CmainWidget.cpp”)
+  
+D:\My_VsQtDemo1\NiceMeeting\sdk\high_level_api\include\IAgoraRtcEngine.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“main.cpp”)
+  
+D:\My_VsQtDemo1\NiceMeeting\sdk\high_level_api\include\AgoraMediaBase.h(1069,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“main.cpp”)
+  
+D:\My_VsQtDemo1\NiceMeeting\sdk\high_level_api\include\AgoraMediaBase.h(1774,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“main.cpp”)
+  
+D:\My_VsQtDemo1\NiceMeeting\sdk\high_level_api\include\AgoraBase.h(1875,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“CmainWidget.cpp”)
+  
+D:\My_VsQtDemo1\NiceMeeting\sdk\high_level_api\include\AgoraBase.h(7615,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“CmainWidget.cpp”)
+  
+D:\My_VsQtDemo1\NiceMeeting\sdk\high_level_api\include\IAgoraRtcEngine.h(1632,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“CmainWidget.cpp”)
+  
+D:\My_VsQtDemo1\NiceMeeting\sdk\high_level_api\include\IAgoraRtcEngine.h(3748,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“CmainWidget.cpp”)
+  
+D:\My_VsQtDemo1\NiceMeeting\sdk\high_level_api\include\IAgoraRtcEngine.h(6209,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“CmainWidget.cpp”)
+  
+D:\My_VsQtDemo1\NiceMeeting\sdk\high_level_api\include\IAgoraRtcEngine.h(6767,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“CmainWidget.cpp”)
+  
+D:\My_VsQtDemo1\NiceMeeting\sdk\high_level_api\include\IAgoraRtcEngine.h(7430,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“CmainWidget.cpp”)
+  
+D:\My_VsQtDemo1\NiceMeeting\sdk\high_level_api\include\IAgoraRtcEngine.h(8033,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“CmainWidget.cpp”)
+  
+D:\My_VsQtDemo1\NiceMeeting\sdk\high_level_api\include\IAgoraRtcEngine.h(8666,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“CmainWidget.cpp”)
+  
+D:\My_VsQtDemo1\NiceMeeting\sdk\high_level_api\include\IAgoraRtcEngine.h(11615,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“CmainWidget.cpp”)
+  
+D:\My_VsQtDemo1\NiceMeeting\sdk\high_level_api\include\AgoraBase.h(1875,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“main.cpp”)
+  
+D:\My_VsQtDemo1\NiceMeeting\sdk\high_level_api\include\AgoraBase.h(7615,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“main.cpp”)
+  
+D:\My_VsQtDemo1\NiceMeeting\sdk\high_level_api\include\IAgoraRtcEngine.h(1632,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“main.cpp”)
+  
+D:\My_VsQtDemo1\NiceMeeting\sdk\high_level_api\include\IAgoraRtcEngine.h(3748,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“main.cpp”)
+  
+D:\My_VsQtDemo1\NiceMeeting\sdk\high_level_api\include\IAgoraRtcEngine.h(6209,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“main.cpp”)
+  
+D:\My_VsQtDemo1\NiceMeeting\sdk\high_level_api\include\IAgoraRtcEngine.h(6767,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“main.cpp”)
+  
+D:\My_VsQtDemo1\NiceMeeting\sdk\high_level_api\include\IAgoraRtcEngine.h(7430,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“main.cpp”)
+  
+D:\My_VsQtDemo1\NiceMeeting\sdk\high_level_api\include\IAgoraRtcEngine.h(8033,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“main.cpp”)
+  
+D:\My_VsQtDemo1\NiceMeeting\sdk\high_level_api\include\IAgoraRtcEngine.h(8666,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“main.cpp”)
+  
+D:\My_VsQtDemo1\NiceMeeting\sdk\high_level_api\include\IAgoraRtcEngine.h(11615,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“main.cpp”)
+  
+  moc_CTitleBar.cpp
+  moc_CmainWidget.cpp
+D:\My_VsQtDemo1\NiceMeeting\sdk\high_level_api\include\IAgoraRtcEngine.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“NiceMeeting/Release/qt/moc/moc_CmainWidget.cpp”)
+  
+D:\My_VsQtDemo1\NiceMeeting\sdk\high_level_api\include\AgoraMediaBase.h(1069,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“NiceMeeting/Release/qt/moc/moc_CmainWidget.cpp”)
+  
+D:\My_VsQtDemo1\NiceMeeting\sdk\high_level_api\include\AgoraMediaBase.h(1774,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“NiceMeeting/Release/qt/moc/moc_CmainWidget.cpp”)
+  
+D:\My_VsQtDemo1\NiceMeeting\sdk\high_level_api\include\AgoraBase.h(1875,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“NiceMeeting/Release/qt/moc/moc_CmainWidget.cpp”)
+  
+D:\My_VsQtDemo1\NiceMeeting\sdk\high_level_api\include\AgoraBase.h(7615,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“NiceMeeting/Release/qt/moc/moc_CmainWidget.cpp”)
+  
+D:\My_VsQtDemo1\NiceMeeting\sdk\high_level_api\include\IAgoraRtcEngine.h(1632,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“NiceMeeting/Release/qt/moc/moc_CmainWidget.cpp”)
+  
+D:\My_VsQtDemo1\NiceMeeting\sdk\high_level_api\include\IAgoraRtcEngine.h(3748,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“NiceMeeting/Release/qt/moc/moc_CmainWidget.cpp”)
+  
+D:\My_VsQtDemo1\NiceMeeting\sdk\high_level_api\include\IAgoraRtcEngine.h(6209,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“NiceMeeting/Release/qt/moc/moc_CmainWidget.cpp”)
+  
+D:\My_VsQtDemo1\NiceMeeting\sdk\high_level_api\include\IAgoraRtcEngine.h(6767,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“NiceMeeting/Release/qt/moc/moc_CmainWidget.cpp”)
+  
+D:\My_VsQtDemo1\NiceMeeting\sdk\high_level_api\include\IAgoraRtcEngine.h(7430,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“NiceMeeting/Release/qt/moc/moc_CmainWidget.cpp”)
+  
+D:\My_VsQtDemo1\NiceMeeting\sdk\high_level_api\include\IAgoraRtcEngine.h(8033,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“NiceMeeting/Release/qt/moc/moc_CmainWidget.cpp”)
+  
+D:\My_VsQtDemo1\NiceMeeting\sdk\high_level_api\include\IAgoraRtcEngine.h(8666,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“NiceMeeting/Release/qt/moc/moc_CmainWidget.cpp”)
+  
+D:\My_VsQtDemo1\NiceMeeting\sdk\high_level_api\include\IAgoraRtcEngine.h(11615,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“NiceMeeting/Release/qt/moc/moc_CmainWidget.cpp”)
+  
+  正在生成代码
+  19 of 1696 functions ( 1.1%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    32 functions had inline decision re-evaluated but remain unchanged
+  已完成代码的生成
+  NiceMeeting.vcxproj -> D:\My_VsQtDemo1\NiceMeeting\Release\NiceMeeting.exe
+  Deploy Qt runtime (SVG icon plugins, etc.) for Release...
+  D:\My_VsQtDemo1\NiceMeeting\Release\NiceMeeting.exe 32 bit, release executable
+  Adding Qt5Svg for qsvgicon.dll
+  Direct dependencies: Qt5Core Qt5Gui Qt5Network Qt5Widgets
+  All dependencies   : Qt5Core Qt5Gui Qt5Network Qt5Widgets
+  To be deployed     : Qt5Core Qt5Gui Qt5Network Qt5Svg Qt5Widgets
+EXEC : warning : Cannot find Visual Studio installation directory, VCINSTALLDIR is not set.
+  Qt5Core.dll is up to date.
+  Qt5Gui.dll is up to date.
+  Qt5Network.dll is up to date.
+  Qt5Svg.dll is up to date.
+  Qt5Widgets.dll is up to date.
+  libGLESv2.dll is up to date.
+  libEGL.dll is up to date.
+  D3Dcompiler_47.dll is up to date.
+  opengl32sw.dll is up to date.
+  qgenericbearer.dll is up to date.
+  qsvgicon.dll is up to date.
+  qgif.dll is up to date.
+  qicns.dll is up to date.
+  qico.dll is up to date.
+  qjpeg.dll is up to date.
+  qsvg.dll is up to date.
+  qtga.dll is up to date.
+  qtiff.dll is up to date.
+  qwbmp.dll is up to date.
+  qwebp.dll is up to date.
+  qwindows.dll is up to date.
+  qwindowsvistastyle.dll is up to date.

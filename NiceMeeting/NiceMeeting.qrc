@@ -4,12 +4,12 @@
         <file>resources/login/close_hover.svg</file>
         <file>resources/login/login_netstatus.svg</file>
         <file>resources/login/login_netstatus_hover.svg</file>
-        <file>resources/login/login_set.svg</file>
-        <file>resources/login/login_set_hover.svg</file>
         <file>resources/login/logo.png</file>
         <file>resources/login/min.svg</file>
         <file>resources/login/min_hover.svg</file>
         <file>resources/login/right_image.png</file>
+        <file>resources/login/setting.svg</file>
+        <file>resources/login/setting_hover.svg</file>
     </qresource>
     <qresource prefix="/titlebar">
         <file>resources/mainwidget/titlebar/close.svg</file>

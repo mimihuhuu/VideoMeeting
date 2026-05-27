@@ -2,10 +2,17 @@
 
 #include <QDialog>
 #include "commons.h"
-#include <QListWidget>
 #include <QLabel>
+#include <QPixmap>
 #include <QPushButton>
-#include <map>
+#include <QString>
+#include <vector>
+
+struct ShareScreenItem {
+	QString name;
+	QPixmap pixmap;
+	qint64 sourceId = 0;
+};
 
 class ShareScreenDialog : public QDialog
 {
@@ -18,8 +25,11 @@ public:
 	void initListWidget(const VecWindowShareInfo& vec);
 
 private:
-	void clearMap();
-	void clearLists();
+	void clearData();
+	void updateScreenPreview();
+	void updateAppPreview();
+	void setSelectedColumn(int type);
+	int wrapIndex(int index, int count, int delta) const;
 
 	void mousePressEvent(QMouseEvent* event) override;
 	void mouseMoveEvent(QMouseEvent* event) override;
@@ -29,23 +39,30 @@ signals:
 	void sig_StartShare(int type, qint64 sourceId);
 
 private slots:
-	void onMin();
 	void onClose();
-	void onCancel();
 	void onStartShare();
-	void onDesktopItemSelected(QListWidgetItem* item);
-	void onAppItemSelected(QListWidgetItem* item);
+	void onScreenPrev();
+	void onScreenNext();
+	void onAppPrev();
+	void onAppNext();
 
 private:
 	QWidget* m_pTitleWidget = nullptr;
 	QLabel* m_pTitleLabel = nullptr;
-	QPushButton* m_pBtnMin = nullptr;
 	QPushButton* m_pBtnClose = nullptr;
+
 	QLabel* m_pLabel_Screen = nullptr;
-	QListWidget* m_pLWScreen = nullptr;
+	QLabel* m_pScreenPreview = nullptr;
+	QLabel* m_pScreenName = nullptr;
+	QPushButton* m_pBtnScreenPrev = nullptr;
+	QPushButton* m_pBtnScreenNext = nullptr;
+
 	QLabel* m_pLabel_App = nullptr;
-	QListWidget* m_pLWApp = nullptr;
-	QPushButton* m_pBtnCancel = nullptr;
+	QLabel* m_pAppPreview = nullptr;
+	QLabel* m_pAppName = nullptr;
+	QPushButton* m_pBtnAppPrev = nullptr;
+	QPushButton* m_pBtnAppNext = nullptr;
+
 	QPushButton* m_pBtnStart = nullptr;
 
 	QPoint m_windowPos;
@@ -53,7 +70,9 @@ private:
 	QPoint m_dPos;
 	bool m_dragging = false;
 
-	int m_selectedType = -1;   // 0=Screen,1=App
-	std::map<int, qint64> m_mapScreen;
-	std::map<int, qint64> m_mapApp;
+	int m_selectedType = -1;
+	int m_screenIndex = -1;
+	int m_appIndex = -1;
+	std::vector<ShareScreenItem> m_screenItems;
+	std::vector<ShareScreenItem> m_appItems;
 };

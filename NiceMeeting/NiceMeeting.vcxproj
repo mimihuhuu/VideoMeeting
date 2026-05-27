@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -37,12 +37,12 @@
   </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|Win32'" Label="QtSettings">
     <QtInstall>5.14.2_msvc2017</QtInstall>
-    <QtModules>core;gui;widgets;svg</QtModules>
+    <QtModules>core;gui;widgets;svg;network</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|Win32'" Label="QtSettings">
     <QtInstall>5.14.2_msvc2017</QtInstall>
-    <QtModules>core;gui;widgets;svg</QtModules>
+    <QtModules>core;gui;widgets;svg;network</QtModules>
     <QtBuildConfig>release</QtBuildConfig>
   </PropertyGroup>
   <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
@@ -63,7 +63,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|Win32'">
   </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+  <ItemDefinitionGroup>
     <ClCompile>
       <AdditionalIncludeDirectories>.\sdk\high_level_api\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -99,8 +99,23 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
+    <PostBuildEvent>
+      <Command>"D:\Qt\Qt5.14.2\5.14.2\msvc2017\bin\windeployqt.exe" --release --no-translations "$(TargetPath)"</Command>
+      <Message>Deploy Qt runtime (SVG icon plugins, etc.) for Release...</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ScreenRegionRecorder.cpp" />
+    <ClCompile Include="AgoraRestAuth.cpp" />
+    <ClCompile Include="CAgoraKickService.cpp" />
+    <ClCompile Include="MeetingFramelessDialog.cpp" />
+    <ClCompile Include="InviteDialog.cpp" />
+    <ClCompile Include="MemberManageDialog.cpp" />
+    <ClCompile Include="ConnectMicDialog.cpp" />
+    <ClCompile Include="RecordingManageDialog.cpp" />
+    <ClCompile Include="RecordingSettings.cpp" />
+    <ClCompile Include="RecordingSettingsDialog.cpp" />
+    <ClCompile Include="MeetingChatDialog.cpp" />
     <ClCompile Include="ShareScreenDialog.cpp" />
     <QtRcc Include="NiceMeeting.qrc" />
     <QtUic Include="CLogDialog.ui" />
@@ -120,7 +135,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="agoraconfig.h" />
+    <QtMoc Include="ScreenRegionRecorder.h" />
+    <ClInclude Include="AgoraRestAuth.h" />
     <ClInclude Include="commons.h" />
+    <QtMoc Include="CAgoraKickService.h" />
+    <QtMoc Include="MeetingFramelessDialog.h" />
+    <QtMoc Include="InviteDialog.h" />
+    <QtMoc Include="MemberManageDialog.h" />
+    <QtMoc Include="ConnectMicDialog.h" />
+    <QtMoc Include="RecordingManageDialog.h" />
+    <QtMoc Include="RecordingSettingsDialog.h" />
+    <ClInclude Include="RecordingSettings.h" />
+    <QtMoc Include="MeetingChatDialog.h" />
     <QtMoc Include="ShareScreenDialog.h" />
     <QtMoc Include="CCustomButton.h" />
     <QtMoc Include="CSmallVideWidget.h" />

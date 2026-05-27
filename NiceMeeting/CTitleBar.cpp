@@ -2,13 +2,12 @@
 #include "commons.h"
 #include <qt_windows.h>
 #include <QHBoxLayout>
-#include <QVBoxLayout>
 #include <QIcon>
 #include <QString>
 
 namespace {
 const char* kTitleBarRes = ":/titlebar/resources/mainwidget/titlebar/";
-const int kTitleIconPx = 20;   // ͼ����ʾ�ߴ磻��ť�� 32��32 ������
+
 QString titleImageButtonStyle(const char* normalIcon, const char* hoverIcon)
 {
 	return QString(
@@ -18,16 +17,19 @@ QString titleImageButtonStyle(const char* normalIcon, const char* hoverIcon)
 		"    background-image: url(%1%2);"
 		"    background-repeat: no-repeat;"
 		"    background-position: center;"
+		"    background-size: %4px %4px;"
 		"}"
 		"QPushButton:hover {"
 		"    background-color: rgba(99, 99, 99, 100);"
 		"    background-image: url(%1%3);"
 		"    background-repeat: no-repeat;"
 		"    background-position: center;"
+		"    background-size: %4px %4px;"
 		"}")
 		.arg(kTitleBarRes)
 		.arg(normalIcon)
-		.arg(hoverIcon);
+		.arg(hoverIcon)
+		.arg(TITLE_BAR_ICON_SIZE);
 }
 
 void setupTitleImageButton(QPushButton* btn, const char* normalIcon, const char* hoverIcon)
@@ -35,7 +37,7 @@ void setupTitleImageButton(QPushButton* btn, const char* normalIcon, const char*
 	btn->setFlat(true);
 	btn->setText(QString());
 	btn->setIcon(QIcon());
-	btn->setFixedSize(46, TITLE_BAR_HEIGHT);
+	btn->setFixedSize(TITLE_BAR_BUTTON_SIZE, TITLE_BAR_BUTTON_SIZE);
 	btn->setStyleSheet(titleImageButtonStyle(normalIcon, hoverIcon));
 }
 } // namespace
@@ -57,26 +59,21 @@ void CTitleBar::initUI()
 	setStyleSheet("background-color:rgb(54,54,54)");	
 
 	m_pLogo = new QLabel(this);
-	m_pLogo->resize(32, 32);
+	m_pLogo->setFixedSize(TITLE_BAR_LOGO_SIZE, TITLE_BAR_LOGO_SIZE);
 	QPixmap pixmap(QString(kTitleBarRes) + "logo.png");
-	QPixmap scaled = pixmap.scaled(kTitleIconPx, kTitleIconPx, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+	QPixmap scaled = pixmap.scaled(TITLE_BAR_LOGO_SIZE, TITLE_BAR_LOGO_SIZE,
+		Qt::KeepAspectRatio, Qt::SmoothTransformation);
 	m_pLogo->setPixmap(scaled);
 	m_pLogo->setAlignment(Qt::AlignCenter);
 
 	m_pTitleTextLabel = new QLabel(this);
 	m_pTitleTextLabel->setText(u8"NiceMeeting");
-	m_pTitleTextLabel->resize(200, 40); 
 	m_pTitleTextLabel->setStyleSheet(
-			"QLabel{font-family:Microsoft YaHei;\
-			font-size:18px;\
-			color:#BDC8E2;}"
-			);
+		QStringLiteral("QLabel { font-family: Microsoft YaHei; font-size: %1px; color: #BDC8E2; }")
+			.arg(TITLE_BAR_FONT_SIZE));
 
 	m_pMaxButton = new QPushButton(this);
 	setupTitleImageButton(m_pMaxButton, "max.svg", "max_hover.svg");
-
-	m_pSetButton = new QPushButton(this);
-	setupTitleImageButton(m_pSetButton, "normal.svg", "normal_hover.svg");
 
 	m_pMinButton = new QPushButton(this);
 	setupTitleImageButton(m_pMinButton, "min.svg", "min_hover.svg");
@@ -85,17 +82,16 @@ void CTitleBar::initUI()
 	setupTitleImageButton(m_pCloseButton, "close.svg", "close_hover.svg");
 
 	QHBoxLayout* pHlay = new QHBoxLayout(this);
-	pHlay->addWidget(m_pLogo);
-	pHlay->addWidget(m_pTitleTextLabel);
-	pHlay->addStretch();
-	pHlay->addWidget(m_pSetButton);
-	pHlay->addWidget(m_pMaxButton);
-	pHlay->addWidget(m_pMinButton);
-	pHlay->addWidget(m_pCloseButton);
-
-	pHlay->setContentsMargins(12, 0, 0, 0);
+	pHlay->setContentsMargins(TITLE_BAR_H_MARGIN, 0, 0, 0);
 	pHlay->setSpacing(0);
 	pHlay->setAlignment(Qt::AlignVCenter);
+	pHlay->addWidget(m_pLogo, 0, Qt::AlignVCenter);
+	pHlay->addSpacing(8);
+	pHlay->addWidget(m_pTitleTextLabel, 0, Qt::AlignVCenter);
+	pHlay->addStretch();
+	pHlay->addWidget(m_pMaxButton, 0, Qt::AlignTop);
+	pHlay->addWidget(m_pMinButton, 0, Qt::AlignTop);
+	pHlay->addWidget(m_pCloseButton, 0, Qt::AlignTop);
 
 	connect(m_pMinButton, &QPushButton::clicked, this, &CTitleBar::OnClicked);
 	connect(m_pMaxButton, &QPushButton::clicked, this, &CTitleBar::OnClicked);
@@ -104,6 +100,7 @@ void CTitleBar::initUI()
 
 void CTitleBar::mousePressEvent(QMouseEvent* event)
 {
+	Q_UNUSED(event);
 	if (ReleaseCapture()) 
 	{
 		QWidget* pWindow = this->window();
@@ -116,6 +113,7 @@ void CTitleBar::mousePressEvent(QMouseEvent* event)
 
 void CTitleBar::mouseDoubleClickEvent(QMouseEvent* event)
 {
+	Q_UNUSED(event);
 	m_pMaxButton->clicked();
 }
 

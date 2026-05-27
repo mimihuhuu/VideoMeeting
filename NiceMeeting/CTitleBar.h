@@ -29,7 +29,6 @@ private:
 
 	QPushButton* m_pMaxButton;
 	QPushButton* m_pMinButton;
-	QPushButton* m_pSetButton;
 	QPushButton* m_pCloseButton;
 
 };

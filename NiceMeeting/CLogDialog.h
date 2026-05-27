@@ -12,6 +12,8 @@ public:
     ~CLogDialog();
 
     QString getRoomID() const;
+    bool isCameraEnabled() const;
+    bool isMicEnabled() const;
 
 private:
     void mousePressEvent(QMouseEvent* event) override;
@@ -24,6 +26,8 @@ private:
 
 private slots:
 	void on_btnJion_clicked();
+	void on_btnMin_clicked();
+	void on_btnClose_clicked();
 
 private:
     Ui::CLogDialogClass ui;

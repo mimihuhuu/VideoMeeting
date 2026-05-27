@@ -8,9 +8,10 @@ int main(int argc, char *argv[])
     CLogDialog window;
 	CmainWidget mainWidget; 
 
-	//µ÷ÓÃexec()·½·¨ÏÔÊ¾Ä£Ì¬¶Ô»°¿ò£¬Ö»ÓÐµ±ÓÃ»§µã»÷ÁË¶Ô»°¿òÉÏµÄ°´Å¥£¬²Å»á¼ÌÐøÖ´ÐÐºóÃæµÄ´úÂë
+	//ï¿½ï¿½ï¿½ï¿½exec()ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾Ä£Ì¬ï¿½Ô»ï¿½ï¿½ï¿½Ö»ï¿½Ðµï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½Ë¶Ô»ï¿½ï¿½ï¿½ï¿½ÏµÄ°ï¿½Å¥ï¿½ï¿½ï¿½Å»ï¿½ï¿½ï¿½ï¿½Ö´ï¿½Ðºï¿½ï¿½ï¿½Ä´ï¿½ï¿½ï¿½
     if (window.exec() == QDialog::Accepted)
     {
+        mainWidget.setJoinMediaOptions(window.isCameraEnabled(), window.isMicEnabled());
         mainWidget.show(); 
         mainWidget.joinroom(window.getRoomID());
         return app.exec();
